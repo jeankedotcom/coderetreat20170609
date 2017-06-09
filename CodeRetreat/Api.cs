@@ -20,6 +20,12 @@ namespace CodeRetreat
             var response = await GetAsync(url);
             var maze = ParseApiResponse(response);
 
+            var nodes = maze.Tiles.SelectMany(t => t);
+
+            var start = nodes.Single(n => n.Type == TileType.Start);
+
+
+
             return maze;
         }
 
@@ -65,6 +71,9 @@ namespace CodeRetreat
                         X = columnNumber,
                         Y = rowNumber
                     };
+
+                    if (tile.Type == TileType.Teleport)
+                        tile.TeleportId = (int)column;
                     
                     tilesForRow.Add(tile);
                 }
@@ -88,9 +97,11 @@ namespace CodeRetreat
                 case 'F':
                     return TileType.Finish;
                 case '1':
+                case '2':
+                case '3':
                     return TileType.Teleport;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new NotSupportedException();
             }
         }
 

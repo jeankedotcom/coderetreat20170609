@@ -8,26 +8,29 @@ namespace CodeRetreat.Models
         public int X { get; set; }
         public int Y { get; set; }
         public TileType Type { get; set; }
+        public int? TeleportId { get; set; }
+
+        public List<Tile> Children { get; set; }
 
         public bool Accessible => Type == TileType.Grass || Type == TileType.Finish || Type == TileType.Teleport;
 
-        /// <summary>
-        ///     Teleport has already been visited.
-        /// </summary>
-        public bool IsAccessedTeleport { get; set; }
-
-        public bool CanMoveTo(Tile other)
+        public int CanMoveTo(Tile other)
         {
-            return Math.Abs(X - other.X) == 1 && Math.Abs(Y - other.Y) == 0 ||
-                   Math.Abs(Y - other.Y) == 1 && Math.Abs(X - other.X) == 0;
+            if (this.Type == TileType.Teleport && other.Type == TileType.Teleport && other.TeleportId == this.TeleportId)
+                return 0;
+
+            if (Math.Abs(X - other.X) == 1 && Math.Abs(Y - other.Y) == 0 || Math.Abs(Y - other.Y) == 1 && Math.Abs(X - other.X) == 0)
+                return 1;
+
+            return int.MaxValue;          
         }
 
-        public bool IsAdjacentTo(Tile other)
-        {
-            return !(X == other.X && Y == other.Y) &&
-                   Math.Abs(X - other.X) <= 1 &&
-                   Math.Abs(Y - other.Y) <= 1;
-        }
+        //public bool IsAdjacentTo(Tile other)
+        //{
+        //    return !(X == other.X && Y == other.Y) &&
+        //           Math.Abs(X - other.X) <= 1 &&
+        //           Math.Abs(Y - other.Y) <= 1;
+        //}
 
         public override string ToString()
         {

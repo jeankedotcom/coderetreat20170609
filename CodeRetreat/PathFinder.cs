@@ -11,46 +11,46 @@ namespace CodeRetreat
             return correspondingTeleport;
         }
 
-        public static List<Tile> FindQuickestPath(Maze maze)
-        {
-            var quickestPath = new List<Tile>();
+        //public static List<Tile> FindQuickestPath(Maze maze)
+        //{
+        //    var quickestPath = new List<Tile>();
 
-            var currentTile = maze.Tiles.SelectMany(row => row).Single(tile => tile.Type == TileType.Start);
+        //    var currentTile = maze.Tiles.SelectMany(row => row).Single(tile => tile.Type == TileType.Start);
 
-            while (true)
-            {
-                quickestPath.Add(currentTile);
+        //    while (true)
+        //    {
+        //        quickestPath.Add(currentTile);
 
-                if (currentTile.Type == TileType.Finish)
-                {
-                    break;
-                }
+        //        if (currentTile.Type == TileType.Finish)
+        //        {
+        //            break;
+        //        }
 
-                if (currentTile.Type == TileType.Teleport)
-                {
-                    //var adjacentTiles = GetAdjacentTiles(maze, currentTile);
-                    currentTile = GetCorrespondingTeleport(currentTile, maze);
-                    currentTile.IsAccessedTeleport = true;
-                }
+        //        if (currentTile.Type == TileType.Teleport)
+        //        {
+        //            //var adjacentTiles = GetAdjacentTiles(maze, currentTile);
+        //            currentTile = GetCorrespondingTeleport(currentTile, maze);
+        //            currentTile.IsAccessedTeleport = true;
+        //        }
 
-                currentTile = GetNextMove(maze, currentTile, quickestPath);
-            }
+        //        currentTile = GetNextMove(maze, currentTile, quickestPath);
+        //    }
 
-            return quickestPath;
-        }
+        //    return quickestPath;
+        //}
 
-        private static Tile GetNextMove(Maze maze, Tile currentTile, List<Tile> crossedPath)
-        {
-            var adjacentTiles = GetAdjacentTiles(maze, currentTile);
-            var accessibleTiles = adjacentTiles.Where(tile => tile.Accessible && !tile.IsAccessedTeleport).OrderByDescending(t => t.Y);
-            var canMoveTo = accessibleTiles.Where(currentTile.CanMoveTo);
+        //private static Tile GetNextMove(Maze maze, Tile currentTile, List<Tile> crossedPath)
+        //{
+        //    var adjacentTiles = GetAdjacentTiles(maze, currentTile);
+        //    var accessibleTiles = adjacentTiles.Where(tile => tile.Accessible && !tile.IsAccessedTeleport).OrderByDescending(t => t.Y);
+        //    var canMoveTo = accessibleTiles.Where(currentTile.CanMoveTo);
 
-            return canMoveTo.First(tile => crossedPath.Contains(tile) == false);
-        }
+        //    return canMoveTo.First(tile => crossedPath.Contains(tile) == false);
+        //}
 
-        private static IEnumerable<Tile> GetAdjacentTiles(Maze maze, Tile currentPosition)
-        {
-            return maze.Tiles.SelectMany(row => row).Where(tile => tile.IsAdjacentTo(currentPosition));
-        }
+        //private static IEnumerable<Tile> GetAdjacentTiles(Maze maze, Tile currentPosition)
+        //{
+        //    return maze.Tiles.SelectMany(row => row).Where(tile => tile.IsAdjacentTo(currentPosition));
+        //}
     }
 }
