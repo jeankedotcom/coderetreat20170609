@@ -27,12 +27,12 @@ namespace CodeRetreat
         {
             var solution = new ResponseModel
             {
-                TeamName = "Rockerteers",
-                MazeId = "09a655dd-6cbd-4793-89cf-604d2b0a8330",
+                TeamName = "Wouter en Ivan",
+                MazeId = "51b8269c-00e2-4486-ac05-f4490942c0c9",
                 Solution = string.Join(";", quickestPath.Select(tile => tile.X + "," + tile.Y))
             };
 
-            return await PostJsonContentAsync(JsonConvert.SerializeObject(solution), "http://mazeretreat.azurewebsites.net/solutions/09a655dd-6cbd-4793-89cf-604d2b0a8330");
+            return await PostJsonContentAsync(JsonConvert.SerializeObject(solution), "http://mazeretreat.azurewebsites.net/solutions/51b8269c-00e2-4486-ac05-f4490942c0c9");
         }
 
         private static Maze ParseApiResponse(string apiResponse)
@@ -87,6 +87,8 @@ namespace CodeRetreat
                     return TileType.Start;
                 case 'F':
                     return TileType.Finish;
+                case '1':
+                    return TileType.Teleport;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

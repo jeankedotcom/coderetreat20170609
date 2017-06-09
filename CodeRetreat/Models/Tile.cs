@@ -9,7 +9,12 @@ namespace CodeRetreat.Models
         public int Y { get; set; }
         public TileType Type { get; set; }
 
-        public bool Accessible => Type == TileType.Grass || Type == TileType.Finish;
+        public bool Accessible => Type == TileType.Grass || Type == TileType.Finish || Type == TileType.Teleport;
+
+        /// <summary>
+        ///     Teleport has already been visited.
+        /// </summary>
+        public bool IsAccessedTeleport { get; set; }
 
         public bool CanMoveTo(Tile other)
         {
@@ -35,7 +40,8 @@ namespace CodeRetreat.Models
         Wall,
         Grass,
         Finish,
-        Start
+        Start,
+        Teleport
     }
 
     public class Maze
