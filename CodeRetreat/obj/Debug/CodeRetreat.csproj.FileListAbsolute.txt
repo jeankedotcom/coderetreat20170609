@@ -1,0 +1,8 @@
+C:\Workspace\CodeRetreat\CodeRetreat\bin\Debug\CodeRetreat.exe.config
+C:\Workspace\CodeRetreat\CodeRetreat\bin\Debug\CodeRetreat.exe
+C:\Workspace\CodeRetreat\CodeRetreat\bin\Debug\CodeRetreat.pdb
+C:\Workspace\CodeRetreat\CodeRetreat\obj\Debug\CodeRetreat.csprojResolveAssemblyReference.cache
+C:\Workspace\CodeRetreat\CodeRetreat\obj\Debug\CodeRetreat.exe
+C:\Workspace\CodeRetreat\CodeRetreat\obj\Debug\CodeRetreat.pdb
+C:\Workspace\CodeRetreat\CodeRetreat\bin\Debug\Newtonsoft.Json.dll
+C:\Workspace\CodeRetreat\CodeRetreat\bin\Debug\Newtonsoft.Json.xml
